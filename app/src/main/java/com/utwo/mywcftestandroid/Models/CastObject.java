@@ -1,5 +1,6 @@
 package com.utwo.mywcftestandroid.Models;
 
+import org.kobjects.isodate.IsoDate;
 import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
@@ -33,7 +34,7 @@ public class CastObject {
                 } else if (info.getType() == Float.class) {
                     result.setProperty(i, Float.parseFloat(soapObject.getPropertySafelyAsString(info.name)));
                 } else if (info.getType() == Date.class) {
-                    //result.setProperty(i, Date.parseFloat(soapObject.getProperty(info.name).toString()));
+                    result.setProperty(i, IsoDate.stringToDate(soapObject.getPropertySafelyAsString(info.name), IsoDate.DATE_TIME));
                 }
             } catch (Exception e) {
                 continue;
