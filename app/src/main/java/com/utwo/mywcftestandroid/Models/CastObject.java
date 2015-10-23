@@ -11,9 +11,10 @@ import java.util.Date;
  * Created by ammic on 2015/10/22.
  */
 public class CastObject {
-    public static KvmSerializable parseToObject(SoapObject soapObject, Class objectClass) throws IllegalAccessException, InstantiationException {
+    public static KvmSerializable parseToObject(Object objectSource, Class classTarget) throws IllegalAccessException, InstantiationException {
 
-        KvmSerializable result = (KvmSerializable) objectClass.newInstance();
+        SoapObject soapObject = (SoapObject)objectSource;
+        KvmSerializable result = (KvmSerializable) classTarget.newInstance();
 
         int numOfAttr = result.getPropertyCount();
 

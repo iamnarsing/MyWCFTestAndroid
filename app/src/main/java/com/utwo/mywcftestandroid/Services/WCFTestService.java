@@ -26,9 +26,9 @@ public class WCFTestService {
         Contract = contract;
     }
 
-    public SoapObject Invoke(String methodName, ServiceParameter[] parameters, ServiceMapping[] mappings) {
+    public Object Invoke(String methodName, ServiceParameter[] parameters, ServiceMapping[] mappings) {
         SoapObject soapRequest = new SoapObject(NAMESPACE, methodName);
-        SoapObject result = null;
+        Object result = null;
 
         if (parameters != null) {
             // The properties that will be passed as parameters
@@ -67,7 +67,7 @@ public class WCFTestService {
             httpTransport.call(NAMESPACE + "/" + Contract + "/" + methodName, soapEnvelope);
             System.out.println("Call Successful!");
 
-            result = (SoapObject)soapEnvelope.getResponse();
+            result = soapEnvelope.getResponse();
         } catch (IOException e) {
             System.out.println("IOException");
             e.printStackTrace();
