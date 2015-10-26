@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.utwo.mywcftestandroid.Models.CastObject;
 import com.utwo.mywcftestandroid.Models.Product;
 import com.utwo.mywcftestandroid.Services.ServiceMapping;
 import com.utwo.mywcftestandroid.Services.ServiceParameter;
@@ -41,7 +42,7 @@ public class MainActivityFragment extends Fragment {
                     public void onClick(View v) {
                         try {
                             WCFTestService service =
-                                    new WCFTestService("http://192.168.80.87:4220/WCFSerialization/ProductService.svc", "IProductService");
+                                    new WCFTestService("http://192.168.80.87:4229/WCFSerialization/ProductService.svc", "IProductService");
 
                             /*Single Class Argument
                             ServiceMapping[] mappings = new ServiceMapping[1];
@@ -52,7 +53,7 @@ public class MainActivityFragment extends Fragment {
 
                             Object result = service.Invoke("GetProductByID", params, mappings);
                             Product product = (Product) CastObject.parseToObject(result, Product.class);
-                            */
+                            product.toString();*/
 
                             /* return List
                             ServiceMapping[] mappings = new ServiceMapping[1];

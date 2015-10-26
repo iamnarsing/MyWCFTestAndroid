@@ -14,10 +14,6 @@ public class ServiceParameter {
         this.Type = type;
     }
 
-    public ServiceParameter(String Name, Object Value){
-        this(Name, Value, String.class);
-    }
-
     public String getName(){
         return Name;
     }

@@ -54,7 +54,7 @@ public class WCFTestService {
             }
         }
 
-        //Marshal class.
+        //Marshal Class.
         MarshalFloat marshalFloat = new MarshalFloat();
         marshalFloat.register(soapEnvelope);
         MarshalDate marshalDate = new MarshalDate();
