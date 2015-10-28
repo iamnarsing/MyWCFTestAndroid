@@ -14,7 +14,11 @@ import com.utwo.mywcftestandroid.Services.ServiceMapping;
 import com.utwo.mywcftestandroid.Services.ServiceParameter;
 import com.utwo.mywcftestandroid.Services.WCFTestService;
 
+import org.ksoap2.serialization.SoapObject;
+
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -68,21 +72,48 @@ public class MainActivityFragment extends Fragment {
                             }
                             */
 
-                            //List Argument
+                            /*Class Argument
                             ServiceMapping[] mappings = new ServiceMapping[1];
                             mappings[0] = new ServiceMapping("Product", Product.class);
 
                             Product product = new Product();
                             product.setProductID(4);
                             product.setProductName("BlackBerry");
+                            product.setSoldOutDate(new Date());
                             product.setIsSoldOut(false);
                             product.setUnitPrice(566.55f);
-                            product.setSoldOutDate(new Date()); //TODO:Date类型无法被.Net序列化
                             ServiceParameter[] params = new ServiceParameter[1];
                             params[0] = new ServiceParameter("product", product, Product.class);
 
                             Boolean result = (Boolean) service.Invoke("Create", params, mappings);
+                            */
 
+                            //List Argument And List Return
+                            ServiceMapping[] mappings = new ServiceMapping[1];
+                            mappings[0] = new ServiceMapping("Product", Product.class);
+
+                            Vector<Product> listProduct = new Vector<>();
+
+                            Product product1 = new Product();
+                            product1.setProductID(1);
+                            product1.setProductName("BlackBerry");
+                            product1.setSoldOutDate(new Date());
+                            product1.setIsSoldOut(false);
+                            product1.setUnitPrice(646.55f);
+                            listProduct.add(product1);
+
+                            Product product2 = new Product();
+                            product2.setProductID(2);
+                            product2.setProductName("BlueBerry");
+                            product2.setSoldOutDate(new Date());
+                            product2.setIsSoldOut(false);
+                            product2.setUnitPrice(566.55f);
+                            listProduct.add(product2);
+
+                            ServiceParameter[] params = new ServiceParameter[1];
+                            params[0] = new ServiceParameter("products", listProduct, Vector.class, "Product", Product.class);
+
+                            SoapObject result = (SoapObject)service.Invoke("ProductListOrderByPrice", params, mappings);
 
                         } catch (Exception e) {
                         }

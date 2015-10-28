@@ -1,5 +1,7 @@
 package com.utwo.mywcftestandroid.Services;
 
+import com.utwo.mywcftestandroid.Models.Product;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.MarshalDate;
 import org.ksoap2.serialization.MarshalFloat;
@@ -10,6 +12,7 @@ import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.Vector;
 
 /**
  * Created by ammic on 2015/10/22.
@@ -37,6 +40,13 @@ public class WCFTestService {
                 pi.setName(param.getName());
                 pi.setValue(param.getValue());
                 pi.setType(param.getType());
+
+                if(param.getItemType() != null && (!param.getItemName().equals(""))) {
+                    pi.elementType = new PropertyInfo();
+                    pi.elementType.type = param.getItemType();
+                    pi.elementType.name = param.getItemName();
+                }
+
                 // Assigning each property to the request
                 soapRequest.addProperty(pi);
             }
@@ -46,6 +56,7 @@ public class WCFTestService {
         SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         soapEnvelope.bodyOut = soapRequest;
         soapEnvelope.dotNet = true;
+        soapEnvelope.implicitTypes = true;
         soapEnvelope.setOutputSoapObject(soapRequest);
 
         if (mappings != null) {
@@ -59,6 +70,8 @@ public class WCFTestService {
         marshalFloat.register(soapEnvelope);
         MarshalDate marshalDate = new MarshalDate();
         marshalDate.register(soapEnvelope);
+        //ISODateTimeMarshal marshalDate = new ISODateTimeMarshal();
+        //marshalDate.register(soapEnvelope);
 
         HttpTransportSE httpTransport = new HttpTransportSE(Url);
         httpTransport.debug = true;

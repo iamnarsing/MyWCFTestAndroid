@@ -13,9 +13,9 @@ public class Product extends BaseModel {
 
     private int ProductID;
     private String ProductName;
+    private Date SoldOutDate;//DateTime放
     private float UnitPrice;
     private boolean IsSoldOut;
-    private Date SoldOutDate;
 
     public int getProductID() {
         return ProductID;
@@ -31,6 +31,14 @@ public class Product extends BaseModel {
 
     public void setProductName(String productName) {
         ProductName = productName;
+    }
+
+    public Date getSoldOutDate() {
+        return SoldOutDate;
+    }
+
+    public void setSoldOutDate(Date soldOutDate) {
+        SoldOutDate = soldOutDate;
     }
 
     public float getUnitPrice() {
@@ -49,13 +57,6 @@ public class Product extends BaseModel {
         IsSoldOut = isSoldOut;
     }
 
-    public Date getSoldOutDate() {
-        return SoldOutDate;
-    }
-
-    public void setSoldOutDate(Date soldOutDate) {
-        SoldOutDate = soldOutDate;
-    }
 
     @Override
     public Object getProperty(int index) {
@@ -65,11 +66,11 @@ public class Product extends BaseModel {
             case 1:
                 return ProductName;
             case 2:
-                return UnitPrice;
-            case 3:
-                return IsSoldOut;
-            case 4:
                 return SoldOutDate;
+            case 3:
+                return UnitPrice;
+            case 4:
+                return IsSoldOut;
             default:
                 return null;
         }
@@ -92,16 +93,16 @@ public class Product extends BaseModel {
                 propertyInfo.name = "ProductName";
                 break;
             case 2:
+                propertyInfo.type = Date.class;
+                propertyInfo.name = "SoldOutDate";
+                break;
+            case 3:
                 propertyInfo.type = Float.class;
                 propertyInfo.name = "UnitPrice";
                 break;
-            case 3:
+            case 4:
                 propertyInfo.type = PropertyInfo.BOOLEAN_CLASS;
                 propertyInfo.name = "IsSoldOut";
-                break;
-            case 4:
-                propertyInfo.type = Date.class;
-                propertyInfo.name = "SoldOutDate";
                 break;
             default:
                 break;
@@ -118,13 +119,13 @@ public class Product extends BaseModel {
                 ProductName = (String) value;
                 break;
             case 2:
-                UnitPrice = (Float) value;;
+                SoldOutDate = (Date) value;
                 break;
             case 3:
-                IsSoldOut = (Boolean) value;
+                UnitPrice = (Float) value;;
                 break;
             case 4:
-                SoldOutDate = (Date) value;
+                IsSoldOut = (Boolean) value;
                 break;
             default:
                 return;

@@ -7,20 +7,38 @@ public class ServiceParameter {
     private String Name;
     private Object Value;
     private Object Type;
+    private String ItemName;
+    private Object ItemType;
 
-    public ServiceParameter(String Name, Object Value, Object type){
-        this.Name = Name;
-        this.Value = Value;
+    public ServiceParameter(String name, Object value, Object type) {
+        this.Name = name;
+        this.Value = value;
         this.Type = type;
     }
 
-    public String getName(){
+    public ServiceParameter(String name, Object value, Object type, String itemName, Object itemType) {
+        this(name, value, type);
+        this.ItemName = itemName;
+        this.ItemType = itemType;
+    }
+
+    public String getName() {
         return Name;
     }
-    public Object getValue(){
+
+    public Object getValue() {
         return Value;
     }
-    public Object getType(){
+
+    public Object getType() {
         return Type;
+    }
+
+    public String getItemName() {
+        return ItemName;
+    }
+
+    public Object getItemType() {
+        return ItemType;
     }
 }
