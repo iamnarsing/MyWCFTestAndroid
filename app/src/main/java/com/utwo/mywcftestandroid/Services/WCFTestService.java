@@ -1,7 +1,5 @@
 package com.utwo.mywcftestandroid.Services;
 
-import com.utwo.mywcftestandroid.Models.Product;
-
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.MarshalDate;
 import org.ksoap2.serialization.MarshalFloat;
@@ -12,7 +10,6 @@ import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.Vector;
 
 /**
  * Created by ammic on 2015/10/22.
@@ -70,8 +67,6 @@ public class WCFTestService {
         marshalFloat.register(soapEnvelope);
         MarshalDate marshalDate = new MarshalDate();
         marshalDate.register(soapEnvelope);
-        //ISODateTimeMarshal marshalDate = new ISODateTimeMarshal();
-        //marshalDate.register(soapEnvelope);
 
         HttpTransportSE httpTransport = new HttpTransportSE(Url);
         httpTransport.debug = true;

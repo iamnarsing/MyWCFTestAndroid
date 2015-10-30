@@ -17,7 +17,6 @@ import com.utwo.mywcftestandroid.Services.WCFTestService;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -36,6 +35,7 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+        //TODO:另一种实现?
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -57,7 +57,7 @@ public class MainActivityFragment extends Fragment {
 
                             Object result = service.Invoke("GetProductByID", params, mappings);
                             Product product = (Product) CastObject.parseToObject(result, Product.class);
-                            product.toString();*/
+                            */
 
                             /* return List
                             ServiceMapping[] mappings = new ServiceMapping[1];
@@ -88,7 +88,7 @@ public class MainActivityFragment extends Fragment {
                             Boolean result = (Boolean) service.Invoke("Create", params, mappings);
                             */
 
-                            //List Argument And List Return
+                            /*List Argument And List Return
                             ServiceMapping[] mappings = new ServiceMapping[1];
                             mappings[0] = new ServiceMapping("Product", Product.class);
 
@@ -114,6 +114,12 @@ public class MainActivityFragment extends Fragment {
                             params[0] = new ServiceParameter("products", listProduct, Vector.class, "Product", Product.class);
 
                             SoapObject result = (SoapObject)service.Invoke("ProductListOrderByPrice", params, mappings);
+                            Vector<Product> products = new Vector<>();
+
+                            for (int i = 0; i < result.getPropertyCount(); i++) {
+                                products.add((Product) CastObject.parseToObject(result.getProperty(i), Product.class));
+                            }
+                            */
 
                         } catch (Exception e) {
                         }
